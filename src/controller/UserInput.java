@@ -1,9 +1,10 @@
-package Lab8;
+package controller;
 import dto.*;
+import Lab8.*;
 
 import java.util.Scanner;
 
-// Lab8.UserInput class
+// controller.UserInput class
 public class UserInput {
 	private static Scanner input = new Scanner(System.in);
 

@@ -1,8 +1,9 @@
-package Lab8;
+package controller;
 
-import dao.PeriodElementImporter;
+import dao.*;
+import Lab8.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 // Lab8.Lab7 (collection/interface)
@@ -79,13 +80,13 @@ public class Lab8 {
 		char key = '\r'; // if Lab8.Element=null, try this do-while loop again
 		System.out.print("Please enter [index] between 0 and " + (plist.size()-1));
 		int index = UserInput.getIntegerBetween(0, plist.size() - 1);
-		Element.PeriodicElement pe = plist.get(index);
+		Lab8.Element.PeriodicElement pe = plist.get(index);
 		if(pe != null) pe.print();
 		do {
 			key = UserInput.getKey();
 			if(key == 'p') { // p-key
 				if(index > 0) {
-					Element.PeriodicElement prev = plist.getPrevious(index);
+					Lab8.Element.PeriodicElement prev = plist.getPrevious(index);
 					if(prev != null) prev.print();
 					index--; // decrease
 				} else {
@@ -93,7 +94,7 @@ public class Lab8 {
 				}
 			} else if(key == 'n') { // n-key
 				if(index < plist.size() - 1) {
-					Element.PeriodicElement next = plist.getNext(index);
+					Lab8.Element.PeriodicElement next = plist.getNext(index);
 					if(next != null) next.print();
 					index++; // increase
 				} else {
@@ -197,9 +198,9 @@ public class Lab8 {
 		}
 		 */
 
-		List<Element.PeriodicElement> loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
+		List<Lab8.Element.PeriodicElement> loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
 
-		for(Element.PeriodicElement e : loadedElements){
+		for(Lab8.Element.PeriodicElement e : loadedElements){
 			System.out.println(e.toString());
 		}
 	}
