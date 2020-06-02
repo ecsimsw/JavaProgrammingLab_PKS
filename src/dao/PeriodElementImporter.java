@@ -1,5 +1,6 @@
 package dao;
 import Lab8.*;
+import controller.Lab8;
 import dto.State;
 import dto.Type;
 
@@ -20,6 +21,7 @@ public class PeriodElementImporter {
 
             while((line = br.readLine()) != null){
                 List<String> tmpList = new ArrayList<String>();
+
                 String array[] = line.split(",");
 
                 int number = Integer.parseInt(array[0]);;
@@ -28,8 +30,10 @@ public class PeriodElementImporter {
                 double weight = Double.parseDouble(array[3]);
                 int period = Integer.parseInt(array[4]);
 
+                /// csv에 빠진 영역은 일단 group = 0, type은 Actinde로 해둠
+
                 int group;
-                if(!array[5].equals(""))                       /// csv에 빠진 영역은 일단 group = 0, type은 Actinde로 해둠
+                if(!array[5].equals(""))
                 {
                     group = Integer.parseInt(array[5]);
                 }

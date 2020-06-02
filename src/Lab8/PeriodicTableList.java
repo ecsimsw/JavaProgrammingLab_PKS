@@ -1,5 +1,7 @@
 package Lab8;
 
+import dao.IPeriodicElementFinder;
+
 import java.util.ArrayList;
 import java.util.List;
 
