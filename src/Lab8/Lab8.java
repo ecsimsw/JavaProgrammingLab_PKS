@@ -200,7 +200,7 @@ public class Lab8 {
 		List<Element.PeriodicElement> loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
 
 		for(Element.PeriodicElement e : loadedElements){
-			e.toString();
+			System.out.println(e.toString());
 		}
 	}
 }

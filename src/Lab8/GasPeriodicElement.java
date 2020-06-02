@@ -20,12 +20,16 @@ public class GasPeriodicElement extends Element.PeriodicElement {
 	@Override
 	public void print() {
 			System.out.println("Lab8.GasPeriodicElement");
+
+			System.out.println("Lab8.LiquidPeriodicElement");
 			System.out.println("number : " + number);
 			System.out.println("symbol : " + symbol);
 			System.out.println("name   : " + name);
 			System.out.println("weight : " + weight);
+			System.out.println("period : " + period);
+			System.out.println("group : " + group);
+			System.out.println("type : " + type);
 			System.out.println("state  : " + state);
-			System.out.println();		
+			System.out.println();
 	}
-
 }

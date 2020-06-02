@@ -22,6 +22,9 @@ public class LiquidPeriodicElement extends Element.PeriodicElement {
 			System.out.println("symbol : " + symbol);
 			System.out.println("name   : " + name);
 			System.out.println("weight : " + weight);
+			System.out.println("period : " + period);
+			System.out.println("group : " + group);
+			System.out.println("type : " + type);
 			System.out.println("state  : " + state);
 			System.out.println();		
 	}

@@ -27,14 +27,41 @@ public class PeriodElementImporter {
                 String name = array[2];
                 double weight = Double.parseDouble(array[3]);
                 int period = Integer.parseInt(array[4]);
-                int group = Integer.parseInt(array[5]);
-                Type type = Type.valueOf(array[6]);
+
+                int group;
+                if(!array[5].equals(""))                       /// csv에 빠진 영역은 일단 group = 0, type은 Actinde로 해둠
+                {
+                    group = Integer.parseInt(array[5]);
+                }
+                else{
+                    group = 0;
+                }
+
+                Type type;
+                if(!array[6].equals(""))
+                {
+                    type = Type.valueOf(array[6]);
+                }
+                else{
+                    type = Type.ACTINIDE;
+                }
+
                 State state = State.valueOf(array[7]);
 
                 Element.PeriodicElement readedElement = new Element.PeriodicElement(number, symbol,name,weight,period,group,type,state) {
                     @Override
                     public void print() {
-                        System.out.println("print for what????");
+                        System.out.println("print for what????\n");
+
+                        System.out.println("number : " + number);
+                        System.out.println("symbol : " + symbol);
+                        System.out.println("name   : " + name);
+                        System.out.println("weight : " + weight);
+                        System.out.println("period : " + period);
+                        System.out.println("group : " + group);
+                        System.out.println("type : " + type);
+                        System.out.println("state  : " + state);
+                        System.out.println();
                     }
                 };
 
