@@ -114,7 +114,8 @@ public class PeriodicTable implements IPeriodicElementFinder {
 
     @Override
     public Element.PeriodicElement findElement(Predicate<Element.PeriodicElement> predicate) {
-        return null;
+        //predicate.test()
+		return null;
     }
 
     @Override
@@ -122,11 +123,11 @@ public class PeriodicTable implements IPeriodicElementFinder {
         return new Element.PeriodicElement[0];
     }
 
-    @Override
     public boolean isInstanceOf(Element.PeriodicElement pe) {
         return false;
     }
 
+    /*
 	// find by Lab8.Element -> Lab8.Element.PeriodicElement
 	public Element.PeriodicElement find(Element e) {
 		for(Element.PeriodicElement pe : this.elements) {
@@ -170,5 +171,6 @@ public class PeriodicTable implements IPeriodicElementFinder {
 		}
 		return result;
 	}
+	*/
 
 }

@@ -65,6 +65,7 @@ public class PeriodicTableList implements IPeriodicElementFinder{
         return get((int)(Math.random()*size())); 
     } 
 
+    /*
 	// find by Lab8.Element -> Lab8.Element.PeriodicElement
 	public Element.PeriodicElement find(Element e) {
 		for(Element.PeriodicElement pe : this.elements) {
@@ -85,7 +86,7 @@ public class PeriodicTableList implements IPeriodicElementFinder{
 		}
 		return result;
 	}
-	
+
 	// use Lab8.IPeriodicElementFinder
 	public List<Element.PeriodicElement> find(IPeriodicElementFinder ifinder) {
 		List<Element.PeriodicElement> result = new ArrayList<Element.PeriodicElement>();
@@ -97,6 +98,7 @@ public class PeriodicTableList implements IPeriodicElementFinder{
 		return result;
 		//return result.toArray(new Lab8.Element.PeriodicElement[result.size()]);
 	}
+	*/
 
 	// print
 	public void print() {
@@ -126,7 +128,6 @@ public class PeriodicTableList implements IPeriodicElementFinder{
 		return new Element.PeriodicElement[0];
 	}
 
-	@Override
 	public boolean isInstanceOf(Element.PeriodicElement pe) {
 		return false;
 	}

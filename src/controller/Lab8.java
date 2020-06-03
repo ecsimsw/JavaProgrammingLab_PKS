@@ -1,6 +1,9 @@
 package controller;
 
 import dao.*;
+import temp.Element;
+import temp.PeriodicTable;
+import temp.Predicator;
 
 
 import java.util.List;
@@ -203,5 +206,9 @@ public class Lab8 {
 		for(temp.Element.PeriodicElement e : loadedElements){
 			System.out.println(e.toString());
 		}
+
+		PeriodicTable ptable = new PeriodicTable((Element.PeriodicElement[]) loadedElements.toArray());
+
+		ptable.findElement(Predicator.isGAS());
 	}
 }

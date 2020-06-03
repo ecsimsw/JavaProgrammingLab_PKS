@@ -8,6 +8,4 @@ public interface IPeriodicElementFinder {
     Element.PeriodicElement findElement(Predicate<Element.PeriodicElement> predicate);
 
     Element.PeriodicElement[] findElements(Predicate<Element.PeriodicElement> predicate);
-
-    boolean isInstanceOf(Element.PeriodicElement pe);
 }
