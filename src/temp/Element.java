@@ -62,7 +62,7 @@ public enum Element {
 	Element(int value) {
 		this.value = value;
 	}
-	
+
 	// getValue
 	public int getValue() {
 		return value;
@@ -422,10 +422,7 @@ public enum Element {
 
 		@Override
 		public int compareTo(PeriodicElement other) {
-			//ascending order
 			return this.getNumber() - other.getNumber();
-			//descending order
-			//return other.getNumber() - this.getNumber();
 		}
 
 
@@ -435,7 +432,7 @@ public enum Element {
 			Comparator<PeriodicElement> comparator= new Comparator<PeriodicElement>() {
 				@Override
 				public int compare(PeriodicElement o1, PeriodicElement o2) {
-					return o1.name.compareTo(o2.name);
+					return o1.number < o2.number ? 1 : -1;
 				}
 			};
 

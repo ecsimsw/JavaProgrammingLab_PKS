@@ -114,7 +114,10 @@ public class PeriodicTable implements IPeriodicElementFinder {
     	Arrays.sort(elements); 
     }
 
-    @Override
+
+    // predicate example : https://howtodoinjava.com/java8/how-to-use-predicate-in-java-8/
+
+	@Override
     public Element.PeriodicElement findElement(Predicate<Element.PeriodicElement> predicate) {
         //predicate.test()
 		return null;
@@ -125,13 +128,10 @@ public class PeriodicTable implements IPeriodicElementFinder {
 
 		var resultList = Arrays.asList(elements).stream()
 				.filter( predicate )
-				.collect(Collectors.<Element.PeriodicElement>toList());
+				.collect(Collectors.toList());
 
-		Element.PeriodicElement[] resultArr = new Element.PeriodicElement[resultList.size()];
-		int i=0;
-		for(Element.PeriodicElement temp : resultList){
-			resultArr[i++] = temp;
-		}
+		Element.PeriodicElement[] resultArr = resultList.toArray(new Element.PeriodicElement[resultList.size()]);
+
 		return resultArr;
 	}
 
