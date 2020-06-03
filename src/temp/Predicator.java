@@ -1,6 +1,8 @@
 package temp;
 
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import dto.*;
 
@@ -25,5 +27,12 @@ public class Predicator{
     }
 
 
+    public static List<Element.PeriodicElement> filtePeriodicElement (List<Element.PeriodicElement> elements,
+                                                                 Predicate<Element.PeriodicElement> predicate)
+    {
+        return elements.stream()
+                .filter( predicate )
+                .collect(Collectors.toList());
+    }
 
 }

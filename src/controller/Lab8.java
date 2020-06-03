@@ -201,14 +201,22 @@ public class Lab8 {
 		}
 		 */
 
-		var loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
+		List<Element.PeriodicElement> loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
 
 		for(temp.Element.PeriodicElement e : loadedElements){
+			//System.out.println(e.toString());
+		}
+		Element.PeriodicElement[] loadedArray = new Element.PeriodicElement[loadedElements.size()];
+		int i=0;
+		for(Element.PeriodicElement l : loadedElements){
+			loadedArray[i++] = l;
+		}
+		PeriodicTable ptable = new PeriodicTable(loadedArray);
+
+		var foundArray =ptable.findElements(Predicator.isGAS());
+		
+		for(Element.PeriodicElement e : foundArray){
 			System.out.println(e.toString());
 		}
-
-		PeriodicTable ptable = new PeriodicTable((Element.PeriodicElement[]) loadedElements.toArray());
-
-		ptable.findElement(Predicator.isGAS());
 	}
 }

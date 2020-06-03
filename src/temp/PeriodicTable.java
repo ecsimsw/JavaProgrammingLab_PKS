@@ -3,15 +3,17 @@ package temp;
 import dao.IPeriodicElementFinder;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class PeriodicTable implements IPeriodicElementFinder {
 	private Element.PeriodicElement[] elements = null;
 
-	// constructor
-	public PeriodicTable() {
-		this(null);
-	}
+	// constructor 이거 안씀
+	//public PeriodicTable() {
+		//this((List<Element.PeriodicElement>) null);
+	//}
 	
 	public PeriodicTable(Element.PeriodicElement[] elements) {
 		this.elements = elements;
@@ -120,8 +122,21 @@ public class PeriodicTable implements IPeriodicElementFinder {
 
     @Override
     public Element.PeriodicElement[] findElements(Predicate<Element.PeriodicElement> predicate) {
-        return new Element.PeriodicElement[0];
-    }
+
+		var resultList = Arrays.asList(elements).stream()
+				.filter( predicate )
+				.collect(Collectors.<Element.PeriodicElement>toList());
+
+		//return (Element.PeriodicElement[]) resultList.toArray();
+		// 왜 안되지
+
+		Element.PeriodicElement[] resultArr = new Element.PeriodicElement[resultList.size()];
+		int i=0;
+		for(Element.PeriodicElement temp : resultList){
+			resultArr[i++] = temp;
+		}
+		return resultArr;
+	}
 
     public boolean isInstanceOf(Element.PeriodicElement pe) {
         return false;
