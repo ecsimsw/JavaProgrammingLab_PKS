@@ -214,7 +214,7 @@ public class Lab8 {
 		PeriodicTable ptable = new PeriodicTable(loadedArray);
 
 		var foundArray =ptable.findElements(Predicator.isGAS());
-		
+
 		for(Element.PeriodicElement e : foundArray){
 			System.out.println(e.toString());
 		}

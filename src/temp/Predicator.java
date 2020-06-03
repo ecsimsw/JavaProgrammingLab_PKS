@@ -25,14 +25,4 @@ public class Predicator{
     public static Predicate<Element.PeriodicElement> isUNKOWN() {
         return p -> p.getState() == State.UNKNOWN;
     }
-
-
-    public static List<Element.PeriodicElement> filtePeriodicElement (List<Element.PeriodicElement> elements,
-                                                                 Predicate<Element.PeriodicElement> predicate)
-    {
-        return elements.stream()
-                .filter( predicate )
-                .collect(Collectors.toList());
-    }
-
 }

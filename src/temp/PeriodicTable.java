@@ -127,9 +127,6 @@ public class PeriodicTable implements IPeriodicElementFinder {
 				.filter( predicate )
 				.collect(Collectors.<Element.PeriodicElement>toList());
 
-		//return (Element.PeriodicElement[]) resultList.toArray();
-		// 왜 안되지
-
 		Element.PeriodicElement[] resultArr = new Element.PeriodicElement[resultList.size()];
 		int i=0;
 		for(Element.PeriodicElement temp : resultList){
