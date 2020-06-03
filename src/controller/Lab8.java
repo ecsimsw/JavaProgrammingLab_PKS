@@ -1,7 +1,6 @@
 package controller;
 
 import dao.*;
-import Lab8.*;
 
 
 import java.util.List;
@@ -66,7 +65,7 @@ public class Lab8 {
 			new SolidPeriodicElement(50, "Sn", "TIN", 118.71)
 	};
 	*/
-
+/*
 	// 4 finders
 	private static IPeriodicElementFinder[] finders = { 
 			new ISolidPeriodicElementFinder(),
@@ -103,8 +102,7 @@ public class Lab8 {
 			}
 		} while(key != 'q');
 	}
-	
-
+	*/
 	public static void main(String[] args) {
 		//Lab7
 		/*
@@ -167,6 +165,8 @@ public class Lab8 {
 		// finders
 		for (IPeriodicElementFinder finder : finders) {
 			System.out.println("Using " + finder.getClass().getName());
+			// 어떤 finder를 사용하는지 출력
+
 			List<Element.PeriodicElement> foundElements = plist.find(finder);
 			for (Element.PeriodicElement pe : foundElements) {
 				System.out.println(pe);			
@@ -198,9 +198,9 @@ public class Lab8 {
 		}
 		 */
 
-		List<Lab8.Element.PeriodicElement> loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
+		var loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
 
-		for(Lab8.Element.PeriodicElement e : loadedElements){
+		for(temp.Element.PeriodicElement e : loadedElements){
 			System.out.println(e.toString());
 		}
 	}

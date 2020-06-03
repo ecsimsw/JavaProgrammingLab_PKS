@@ -1,11 +1,12 @@
-package Lab8;
+package temp;
 
 import dao.IPeriodicElementFinder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
-public class PeriodicTableList {
+public class PeriodicTableList implements IPeriodicElementFinder{
 	private List<Element.PeriodicElement> elements = null;
 
 	// constructor
@@ -112,5 +113,21 @@ public class PeriodicTableList {
 	@Override
 	public String toString() {
 		return "Lab8.PeriodicTableList [elements=" + elements + "]";
+	}
+
+	@Override
+	public Element.PeriodicElement findElement(Predicate<Element.PeriodicElement> predicate) {
+		return null;
+	}
+
+	@Override
+	public Element.PeriodicElement[] findElements(Predicate<Element.PeriodicElement> predicate) {
+
+		return new Element.PeriodicElement[0];
+	}
+
+	@Override
+	public boolean isInstanceOf(Element.PeriodicElement pe) {
+		return false;
 	}
 }

@@ -1,4 +1,4 @@
-package Lab8;
+package temp;
 
 public class GasPeriodicElementFinder extends PeriodicElementFinder {
 

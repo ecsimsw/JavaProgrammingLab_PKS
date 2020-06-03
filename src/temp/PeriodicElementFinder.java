@@ -1,4 +1,4 @@
-package Lab8;
+package temp;
 
 public abstract class PeriodicElementFinder {
 	public abstract boolean isInstanceOf(Element.PeriodicElement pe);

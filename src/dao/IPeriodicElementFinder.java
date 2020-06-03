@@ -1,14 +1,13 @@
 package dao;
 
-import Lab8.*;
+import temp.*;
 
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public interface IPeriodicElementFinder {
-
-    boolean isInstanceOf(Element.PeriodicElement pe);
-
     Element.PeriodicElement findElement(Predicate<Element.PeriodicElement> predicate);
 
     Element.PeriodicElement[] findElements(Predicate<Element.PeriodicElement> predicate);
+
+    boolean isInstanceOf(Element.PeriodicElement pe);
 }

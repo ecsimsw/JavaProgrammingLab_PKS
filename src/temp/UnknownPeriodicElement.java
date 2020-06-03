@@ -1,23 +1,23 @@
-package Lab8;
+package temp;
 import dto.*;
+public class UnknownPeriodicElement extends Element.PeriodicElement {
 
-public class LiquidPeriodicElement extends Element.PeriodicElement {
-
-	public LiquidPeriodicElement(int number, String symbol, String name, double weight, int period, int group, Type type, State state) {
+	public UnknownPeriodicElement(int number, String symbol, String name, double weight, int period, int group, Type type, State state) {
 		super(number, symbol, name, weight, period, group, type, state);
 
-		this.state = state = State.LIQUID;
+		state = State.UNKNOWN;
 	}
 
 	@Override
 	public String toString() {
-		return "Lab8.LiquidPeriodicElement [number=" + number + ", symbol=" + symbol + ", name=" + name + ", weight="
+		return "Lab8.UnknownPeriodicElement [number=" + number + ", symbol=" + symbol + ", name=" + name + ", weight="
 				+ weight + ", state=" + state + "]";
 	}
-
+	
 	@Override
 	public void print() {
-			System.out.println("Lab8.LiquidPeriodicElement");
+			System.out.println("Lab8.UnknownPeriodicElement");
+
 			System.out.println("number : " + number);
 			System.out.println("symbol : " + symbol);
 			System.out.println("name   : " + name);
@@ -26,6 +26,6 @@ public class LiquidPeriodicElement extends Element.PeriodicElement {
 			System.out.println("group : " + group);
 			System.out.println("type : " + type);
 			System.out.println("state  : " + state);
-			System.out.println();		
+			System.out.println();
 	}
 }

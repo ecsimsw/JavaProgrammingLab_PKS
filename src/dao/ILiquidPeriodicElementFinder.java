@@ -1,7 +1,7 @@
 package dao;
 
-import Lab8.Element;
-import Lab8.LiquidPeriodicElement;
+import temp.Element;
+import temp.LiquidPeriodicElement;
 
 import java.util.function.Predicate;
 

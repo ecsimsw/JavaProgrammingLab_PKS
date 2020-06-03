@@ -1,7 +1,7 @@
 package dao;
 
-import Lab8.Element;
-import Lab8.SolidPeriodicElement;
+import temp.Element;
+import temp.SolidPeriodicElement;
 
 import java.util.function.Predicate;
 

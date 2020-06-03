@@ -1,4 +1,4 @@
-package Lab8;
+package temp;
 
 import dto.State;
 import dto.Type;
@@ -281,17 +281,6 @@ public enum Element {
 		default : return null;
 		}
 	}
-/*	
-	//get names()
-	public static String[] names() {
-		String[] names = new String[Lab8.Element.values().length];
-		for(Lab8.Element n: Lab8.Element.values()) {
-			names[n.ordinal()] = n.toString();
-		}
-		return names;
-	}
-*/
-	//get names()
 	public static String[] names() {
 		String[] names = new String[Element.values().length];
 		for(int i=0; i<Element.values().length; i++) {
@@ -300,8 +289,7 @@ public enum Element {
 		return names;
 	}
 
-
-	public abstract static class PeriodicElement implements Comparable<PeriodicElement> {
+	public static class PeriodicElement implements Comparable<PeriodicElement> {
 		protected int number;
 		protected String symbol;
 		protected String name;
@@ -382,38 +370,55 @@ public enum Element {
 			return nameOf(this.name);
 		}
 
-		@Override
 		public String toString() {
-			return number+","+symbol+","+name+","+weight+","+period+","+group+","+type+","+state; // type & state are Enum type
+			StringBuilder elementInfo = new StringBuilder();
+			elementInfo.append(number);
+			elementInfo.append(',');
+			elementInfo.append(symbol);
+			elementInfo.append(',');
+			elementInfo.append(name);
+			elementInfo.append(',');
+			elementInfo.append(weight);
+			elementInfo.append(',');
+			elementInfo.append(period);
+
+			elementInfo.append(',');
+			if(group == -1) elementInfo.append(" ");
+			else elementInfo.append(group);
+
+			elementInfo.append(',');
+			if(type == null) elementInfo.append(" ");
+			else elementInfo.append(type);
+
+			elementInfo.append(',');
+			elementInfo.append(state);
+
+			return elementInfo.toString();
 		}
 
-		public abstract void print();
-
-
-		public static PeriodicElement parse(String line) {
-			String[] fields = line.split(" ");
+		public static PeriodicElement parse(String[] fields) {
 			int number = Integer.parseInt(fields[0]);
 			String symbol = fields[1];
 			String name = fields[2];
 			double weight = Double.parseDouble(fields[3]);
 			int period = Integer.parseInt(fields[4]);
-			int group = Integer.parseInt(fields[5]);
-			Type type = Type.valueOf(fields[6]);
+			int group;
+
+			if(fields[5].equals("")){
+				group = -1;
+			}else{
+				group = Integer.parseInt(fields[5]);
+			}
+
+			Type type;
+			if(fields[6].equals("")){
+				type = null;
+			}else{
+				type = Type.valueOf(fields[6]);
+			}
 			State state = State.valueOf(fields[7]);
 			return PeriodicElementFactory.getInstance(number, symbol, name, weight, period,group,type, state);
 		}
-
-		/*
-		// utility method ( String -> PeirodicElement) "1 H HYDROGEN 1.008 GAS" => Lab8.GasPeriodicElement
-		public static PeriodicElement parsePeriodicElement(String line) {
-			String[] fields = line.split(" ");
-			int number = Integer.parseInt(fields[0]);
-			String symbol = fields[1];
-			String name = fields[2];
-			double weight = Double.parseDouble(fields[3]);
-			State state = State.valueOf(fields[4]);
-			return PeriodicElementFactory.getInstance(number, symbol, name, weight, state);
-		}*/
 
 		@Override
 		public int compareTo(PeriodicElement other) {
@@ -468,6 +473,11 @@ public enum Element {
 			};
 
 			return comparator;
+		}
+
+		public void print() {
+
+			System.out.println("Print what????");
 		}
 
 		///// ----- End Comparator

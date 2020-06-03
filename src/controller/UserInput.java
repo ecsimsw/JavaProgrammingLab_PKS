@@ -1,6 +1,6 @@
 package controller;
 import dto.*;
-import Lab8.*;
+import temp.*;
 
 import java.util.Scanner;
 
