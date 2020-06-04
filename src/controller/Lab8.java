@@ -9,11 +9,14 @@ import dao.PeriodicTableList;
 import java.util.*;
 
 public class Lab8 {
+	static String pathLoadCSV = "ptableLoad.csv";
+	static String pathSaveCSV = "ptableSave.csv";
+
 	public static void main(String[] args) {
 
 		/// 1. Load table from CSV
 
-		List<Element.PeriodicElement> elements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
+		List<Element.PeriodicElement> elements = PeriodElementImporter.loadCSV(pathLoadCSV);
 		Element.PeriodicElement[] elementsArray = elements.toArray(new Element.PeriodicElement[elements.size()]);
 
 		System.out.println("\nptable");
@@ -160,5 +163,10 @@ public class Lab8 {
 		ResultElements = parray.findElements(Predicator.isState(State.GAS));   // by state
 		System.out.println("\nElements which state is Gas");
 		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+
+		// 5. Save table in csv file
+
+		PeriodElementImporter.saveCSV(pathSaveCSV, elements);
 	}
 }

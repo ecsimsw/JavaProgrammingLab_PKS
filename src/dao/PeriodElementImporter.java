@@ -30,5 +30,24 @@ public class PeriodElementImporter {
         return resultLoaded;
     };
 
-    //public static void saveCSV(String path, List<Element.PeriodicElement> elements);
+    public static void saveCSV(String path, List<Element.PeriodicElement> elements){
+        FileWriter fw = null;
+        try{
+            fw = new FileWriter(path);
+
+            for(Element.PeriodicElement e : elements){
+                fw.write(e.toString());
+                fw.write('\n');
+            }
+            fw.flush();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                if (fw != null){ fw.close(); }
+            } catch (IOException e) { e.printStackTrace(); }
+        }
+    }
 }
