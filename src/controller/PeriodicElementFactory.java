@@ -1,5 +1,6 @@
-package temp;
+package controller;
 
+import controller.Element;
 import dto.*;
 
 public class PeriodicElementFactory {

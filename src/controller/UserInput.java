@@ -1,6 +1,5 @@
 package controller;
 import dto.*;
-import temp.*;
 
 import java.util.Scanner;
 
@@ -74,26 +73,9 @@ public class UserInput {
 		while (true) {
 			try {
 				return State.valueOf(input.nextLine());
-			}
-			catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				System.out.print("ERROR! Please reenter state [GAS, SOLID, LIQUID, UNKNOWN]:");
 			}
 		}
 	}
-	/* 일단 보류
-	public static Element.PeriodicElement getPeriodicElement() {
-		System.out.println("~~please input Lab8.Element.PeriodicElement~~");
-		System.out.print("please input Lab8.Element.PeriodicElement number : ");
-		int number = UserInput.getInteger();
-		System.out.print("please input Lab8.Element.PeriodicElement symbol : ");
-		String symbol = UserInput.getString();	
-		System.out.print("please input Lab8.Element.PeriodicElement name : ");
-		String name = UserInput.getString();
-		System.out.print("please input Lab8.Element.PeriodicElement weight : ");
-		double weight = UserInput.getDouble();	
-		System.out.print("please input Lab8.Element.PeriodicElement state : ");
-		State state = UserInput.getState();	
-		return PeriodicElementFactory.getInstance(number, symbol, name, weight, period, group, type, state);
-	}*/
-
 }

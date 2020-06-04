@@ -1,4 +1,4 @@
-package temp;
+package controller;
 
 import dto.State;
 import dto.Type;
@@ -67,7 +67,7 @@ public enum Element {
 	public int getValue() {
 		return value;
 	}
-	
+
 	// get Lab8.Element by index
 	public static Element valueOf(int value) {
 		switch(value) {
@@ -124,7 +124,7 @@ public enum Element {
 		default : return null;
 		}
 	}
-	
+
 	//nameOf - String 받으면 Lab8.Element 내보낸다.
 	public static Element nameOf(String name) {
 		switch(name) {
@@ -192,15 +192,15 @@ public enum Element {
 		case "SCANDIUM":
 			return SCANDIUM;
 		case "22" :
-		case "TITANIUM": 
+		case "TITANIUM":
 			return TITANIUM;
 		case "23" :
 		case "VANADIUM":
 			return VANADIUM;
-		case "24" : 
+		case "24" :
 		case "CHROMIUM":
 			return CHROMIUM;
-		case "25" : 
+		case "25" :
 		case "MANGANESE":
 			return MANGANESE;
 		case "26" :
@@ -214,7 +214,7 @@ public enum Element {
 			return NICKEL;
 		case "29" :
 		case "COPPER":
-			return COPPER;	
+			return COPPER;
 		case "30" :
 		case "ZINC":
 			return ZINC;
@@ -248,7 +248,7 @@ public enum Element {
 		case "40" :
 		case "ZIROCONIUM":
 			return ZIROCONIUM;
-		case "41" : 
+		case "41" :
 		case "NIOBIUM":
 			return NIOBIUM;
 		case "42" :
@@ -268,8 +268,8 @@ public enum Element {
 			return PALLADIUM;
 		case "47" :
 		case "SILVER":
-			return SILVER;		
-		case "48" : 
+			return SILVER;
+		case "48" :
 		case "CADMIUM":
 			return CADMIUM;
 		case "49" :
@@ -312,63 +312,34 @@ public enum Element {
 			this.state = state;
 		}
 
-		// getter/setter
+		// getter
 		public int getNumber() {
 			return number;
-		}
-
-		public void setNumber(int number) {
-			this.number = number;
 		}
 
 		public String getSymbol() {
 			return symbol;
 		}
 
-		public void setSymbol(String symbol) {
-			this.symbol = symbol;
-		}
-
 		public String getName() {
 			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
 		}
 
 		public double getWeight() {
 			return weight;
 		}
 
-		public void setWeight(double weight) {
-			this.weight = weight;
-		}
-
 		public int getPeriod() {return period;}
-
-		public void setPeriod(int period) {this.period = period;}
 
 		public int getGroup() {return group;}
 
-		public void setGroup(int group) {this.group = group;}
-
 		public Type getType() {return type;}
-
-		public void setType(Type type) {this.type = type;}
 
 		public State getState() {
 			return state;
 		}
 
-		public void setState(State state) {
-			this.state = state;
-		}
-
 		// getElement
-		public Element getElement() {
-			return nameOf(this.name);
-		}
 
 		public String toString() {
 			StringBuilder elementInfo = new StringBuilder();
@@ -471,12 +442,6 @@ public enum Element {
 
 			return comparator;
 		}
-
-		public void print() {
-
-			System.out.println("Print what????");
-		}
-
 		///// ----- End Comparator
 	}
 }

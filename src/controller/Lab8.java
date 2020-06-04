@@ -1,60 +1,28 @@
 package controller;
 
 import dao.*;
-import temp.Element;
-import temp.PeriodicTable;
-import temp.Predicator;
+import dto.State;
+import dto.Type;
+import dao.PeriodicTable;
+import dao.PeriodicTableList;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-// Lab8.Lab7 (collection/interface)
-//https://www.ptable.com/?lang=ko
+import java.util.*;
 
 public class Lab8 {
-
-/*
-	
-	public static void printCurrentPrevNext(PeriodicTableList plist) {
-		plist.print();
-		char key = '\r'; // if Lab8.Element=null, try this do-while loop again
-		System.out.print("Please enter [index] between 0 and " + (plist.size()-1));
-		int index = UserInput.getIntegerBetween(0, plist.size() - 1);
-		Lab8.Element.PeriodicElement pe = plist.get(index);
-		if(pe != null) pe.print();
-		do {
-			key = UserInput.getKey();
-			if(key == 'p') { // p-key
-				if(index > 0) {
-					Lab8.Element.PeriodicElement prev = plist.getPrevious(index);
-					if(prev != null) prev.print();
-					index--; // decrease
-				} else {
-					System.out.println("Cannot decrease index < 0");					
-				}
-			} else if(key == 'n') { // n-key
-				if(index < plist.size() - 1) {
-					Lab8.Element.PeriodicElement next = plist.getNext(index);
-					if(next != null) next.print();
-					index++; // increase
-				} else {
-					System.out.println("Cannot increase index > " + plist.size());
-				}
-			}
-		} while(key != 'q');
-	}
-	*/
 	public static void main(String[] args) {
-		//Lab7
-		/*
-		String[] names = Element.names();
-		for (String n: names) System.out.println(n);
-		
-		// class
+
+		/// 1. Load table from CSV
+
+		List<Element.PeriodicElement> elements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
+		Element.PeriodicElement[] elementsArray = elements.toArray(new Element.PeriodicElement[elements.size()]);
+
 		System.out.println("\nptable");
-		PeriodicTable ptable = new PeriodicTable(elements);
+		PeriodicTable ptable = new PeriodicTable(elementsArray);
+
 		ptable.print();
+
+		// 2. Shuffle table and Pick some
+
 		System.out.println("\nshuffle");
 		ptable.shuffle();
 		ptable.print();
@@ -64,96 +32,133 @@ public class Lab8 {
 		System.out.println("\nshuffle");
 		ptable.shuffle();
 		ptable.print();
-		
-		// get 10 from ptable
-		Element.PeriodicElement[] result = ptable.getElements(0, 10);
-		// convert array to arraylist
-		//List<Lab8.Element.PeriodicElement> list = new ArrayList<>(Arrays.asList(elements));
-		System.out.println("\nplist");
-		PeriodicTableList plist = new PeriodicTableList();
-		for (Element.PeriodicElement pe : result) {
-			plist.add(pe);
-		}
-		plist.print();
-		System.out.println("\nrandom pick from plist");
-		plist.getRandomElement().print();
-		System.out.println("\nplist sort");
-		plist.sort();
+
+
+		/// 3. Using List
+
+		System.out.println("\nget 20 -> plist");
+		PeriodicTableList plist = new PeriodicTableList(Arrays.asList(ptable.getElements(0, 20)));
 		plist.print();
 
-		
-		System.out.println("\nget another 5 from ptable");		
-		// get 5 from ptable
-		Element.PeriodicElement[] result2 = ptable.getElements(10, 15);
-		for (Element.PeriodicElement pe : result2) {
-			System.out.println(pe);
-		}
-		System.out.println("\nget another 5 from ptable");		
-		
-		System.out.println("\npmap");
-		PeriodicTableMap pmap = new PeriodicTableMap();
-		for (Element.PeriodicElement pe : result2) {
-			pmap.add(pe.getElement(), pe);
-		}
-		pmap.print();
-		pmap.printKeys();
-		pmap.printValues();
-		System.out.println("\nrandom pick from pmap");
-		pmap.getRandomElement().print();
-		System.out.println("\n~~~~~~~~~~~~~~~~~~~pmap sort");
-		pmap.sort();
-		pmap.print();
-		
-		// finders
+		/// 3-1 Sorting List of Elements
 
-		// plist printCurrentPrevNext
-		printCurrentPrevNext(plist);
+		System.out.println("\nplist sort by Name");
+		plist.sort(Element.PeriodicElement.NameComparator());
+		plist.print();
 
-		// pmap add/remove/
-		Element.PeriodicElement element = ptable.getRandomElement();
-		element.print();
-		pmap.add(element.getElement(), element);
-		pmap.print();
-		element = ptable.getRandomElement();
-		element.print();
-		pmap.add(element.getElement(), element);
-		pmap.print();
+		System.out.println("\nplist sort by Weight");
+		plist.sort(Element.PeriodicElement.WeightComparator());
+		plist.print();
 
-		// finders
-		for (IPeriodicElementFinder finder : finders) {
-			System.out.println("Using " + finder.getClass().getName());
-			List<Element.PeriodicElement> foundElements = pmap.find(finder);
-			for (Element.PeriodicElement pe : foundElements) {
-				System.out.println(pe);			
-			}
-			System.out.println("\n\n");			
-		}
-		 */
+		System.out.println("\nplist sort by Symbol");
+		plist.sort(Element.PeriodicElement.SymbolComparator());
+		plist.print();
+
+		System.out.println("\nplist sort by Number");
+		plist.sort(Element.PeriodicElement.NumberComparator());
+		plist.print();
 
 
-		// csv load check
-		List<Element.PeriodicElement> loadedElements = PeriodElementImporter.loadCSV("C:\\Users\\luraw\\OneDrive\\Desktop\\ptable.csv");
+		/// 3-2 Finding Elements in List.
 
-		for(temp.Element.PeriodicElement e : loadedElements){
-		//	System.out.println(e.toString());
-		}
+		System.out.println("\nget 118 -> plist");
+		plist = new PeriodicTableList(Arrays.asList(ptable.getElements(0, 118)));
 
-		// findElements check
-		Element.PeriodicElement[] loadedArray = loadedElements.toArray(new Element.PeriodicElement[loadedElements.size()]);
+		System.out.println("\nfind elements in list with predicator");
 
-		PeriodicTable ptable = new PeriodicTable(loadedArray);
+		var resultElement = plist.findElement(Predicator.isNumber(5));   // by Number
+		System.out.println("\nElement which number is 5");
+		if(resultElement != null) System.out.println(resultElement.toString());
 
-		var foundArray_gas =ptable.findElements(Predicator.isGAS());
+		resultElement = plist.findElement(Predicator.isSymbol("Mg"));   // by Symbol
+		System.out.println("\nElement which symbol is mg");
+		if(resultElement != null) System.out.println(resultElement.toString());
 
-		for(Element.PeriodicElement e : foundArray_gas){
-		 //	System.out.println(e.toString());
-		}
+		resultElement = plist.findElement(Predicator.isName("Helium"));   // by Name
+		System.out.println("\nElement which Name is Helium");
+		if(resultElement != null) System.out.println(resultElement.toString());
 
-		var foundArray_period = ptable.findElements(Predicator.isPeriod(2));
+		var ResultElements = plist.findElements(Predicator.isWeight(20.18));   // by Weight
+		System.out.println("\nElements which weight is 20.18");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
 
-		for(Element.PeriodicElement e : foundArray_period){
-			System.out.println(e.toString());
-		}
+		ResultElements = plist.findElements(Predicator.isPeriod(3));       // by period
+		System.out.println("\nElements which period is 3");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
 
+		ResultElements = plist.findElements(Predicator.isGroup(2));          // by Group
+		System.out.println("\nElements which group is 2");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+		ResultElements = plist.findElements(Predicator.isType(Type.ALKALI_METAL));   // by type
+		System.out.println("\nElements which type is ALKALI_METAL");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+		ResultElements = plist.findElements(Predicator.isState(State.GAS));   // by state
+		System.out.println("\nElements which state is Gas");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+		/// 4. Using Array
+
+		System.out.println("\nget 20 -> parray");
+		PeriodicTable parray = new PeriodicTable(ptable.getElements(10, 35));
+		parray.print();
+
+		/// 4-1 Sorting Array of Elements
+
+		System.out.println("\nplist sort by Name");
+		parray.sort(Element.PeriodicElement.NameComparator());
+		parray.print();
+
+		System.out.println("\nplist sort by Weight");
+		parray.sort(Element.PeriodicElement.WeightComparator());
+		parray.print();
+
+		System.out.println("\nplist sort by Symbol");
+		parray.sort(Element.PeriodicElement.SymbolComparator());
+		parray.print();
+
+		System.out.println("\nplist sort by Number");
+		parray.sort(Element.PeriodicElement.NumberComparator());
+		parray.print();
+
+		/// 4-2 Finding Elements in Array.
+
+		System.out.println("\nget 118 -> parray");
+		parray = new PeriodicTable((ptable.getElements(0, 118)));
+
+		System.out.println("\nfind elements in array with predicator");
+
+		resultElement = parray.findElement(Predicator.isNumber(5));   // by Number
+		System.out.println("\nElement which number is 5");
+		if(resultElement != null) System.out.println(resultElement.toString());
+
+		resultElement = parray.findElement(Predicator.isSymbol("Mg"));   // by Symbol
+		System.out.println("\nElement which symbol is mg");
+		if(resultElement != null) System.out.println(resultElement.toString());
+
+		resultElement = parray.findElement(Predicator.isName("Helium"));   // by Name
+		System.out.println("\nElement which Name is Helium");
+		if(resultElement != null) System.out.println(resultElement.toString());
+
+		ResultElements = parray.findElements(Predicator.isWeight(20.18));   // by Weight
+		System.out.println("\nElements which weight is 20.18");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+		ResultElements = parray.findElements(Predicator.isPeriod(3));       // by period
+		System.out.println("\nElements which period is 3");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+		ResultElements = parray.findElements(Predicator.isGroup(2));          // by Group
+		System.out.println("\nElements which group is 2");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+		ResultElements = parray.findElements(Predicator.isType(Type.ALKALI_METAL));   // by type
+		System.out.println("\nElements which type is ALKALI_METAL");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
+
+		ResultElements = parray.findElements(Predicator.isState(State.GAS));   // by state
+		System.out.println("\nElements which state is Gas");
+		if(resultElement != null) for(var r : ResultElements) System.out.println(r.toString());
 	}
 }

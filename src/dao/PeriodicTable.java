@@ -1,31 +1,23 @@
-package temp;
+package dao;
 
+import controller.Element;
 import dao.IPeriodicElementFinder;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class PeriodicTable implements IPeriodicElementFinder {
 	private Element.PeriodicElement[] elements = null;
 
-	// constructor 이거 안씀
-	//public PeriodicTable() {
-		//this((List<Element.PeriodicElement>) null);
-	//}
-	
 	public PeriodicTable(Element.PeriodicElement[] elements) {
 		this.elements = elements;
 	}
 
-	// getter & setter
+	// getter
 	public Element.PeriodicElement[] getElements() {
 		return elements;
-	}
-
-	public void setElements(Element.PeriodicElement[] elements) {
-		this.elements = elements;
 	}
 
 	// set
@@ -110,18 +102,27 @@ public class PeriodicTable implements IPeriodicElementFinder {
     }
 
     // sort
-    public void sort() {
-    	Arrays.sort(elements); 
-    }
+	public void sort(){
+		Arrays.sort(elements);
+	}
 
+	public void sort(Comparator<Element.PeriodicElement> comparator) {
+		Arrays.sort(elements, comparator);
+	}
 
     // predicate example : https://howtodoinjava.com/java8/how-to-use-predicate-in-java-8/
 
 	@Override
     public Element.PeriodicElement findElement(Predicate<Element.PeriodicElement> predicate) {
-        //predicate.test()
-		return null;
-    }
+
+        var resultList = Arrays.asList(elements).stream()
+                .filter( predicate )
+                .collect(Collectors.toList());
+
+        Element.PeriodicElement result = resultList.size()>0 ? resultList.get(0) : null;
+
+        return result;
+	}
 
     @Override
     public Element.PeriodicElement[] findElements(Predicate<Element.PeriodicElement> predicate) {
@@ -130,59 +131,8 @@ public class PeriodicTable implements IPeriodicElementFinder {
 				.filter( predicate )
 				.collect(Collectors.toList());
 
-		Element.PeriodicElement[] resultArr = resultList.toArray(new Element.PeriodicElement[resultList.size()]);
+		Element.PeriodicElement[] resultArr = resultList !=null ? resultList.toArray(new Element.PeriodicElement[0]) : null;
 
 		return resultArr;
 	}
-
-    public boolean isInstanceOf(Element.PeriodicElement pe) {
-        return false;
-    }
-
-    /*
-	// find by Lab8.Element -> Lab8.Element.PeriodicElement
-	public Element.PeriodicElement find(Element e) {
-		for(Element.PeriodicElement pe : this.elements) {
-			if(e != null && pe != null && pe.getNumber() == e.getValue())
-				return pe;
-		}
-		return null;
-	}
-
-	// find by Symbol -> Lab8.Element.PeriodicElement
-	public Element.PeriodicElement find(String symbol) {
-		Element.PeriodicElement result = null;
-		for (Element.PeriodicElement pe : this.elements) {
-			if (symbol != null && pe != null && pe.getSymbol().equals(symbol)) {
-				result = pe;
-				break;
-			}
-		}
-		return result;
-	}
-
-	// use Lab8.PeriodicElementFinder
-	public Element.PeriodicElement[] find(PeriodicElementFinder finder) {
-		return finder.find(this.elements);
-	}
-
-	// use Lab8.IPeriodicElementFinder
-	public Element.PeriodicElement[] find(IPeriodicElementFinder ifinder) {
-		int count = 0;
-		for (Element.PeriodicElement pe : this.elements) {
-			if (pe != null && ifinder.isInstanceOf(pe)) {
-				count++;
-			}
-		}
-		Element.PeriodicElement[] result = new Element.PeriodicElement[count];
-		count = 0;
-		for (Element.PeriodicElement pe : this.elements) {
-			if (pe != null && ifinder.isInstanceOf(pe)) {
-				result[count++] = pe;
-			}
-		}
-		return result;
-	}
-	*/
-
 }
