@@ -1,10 +1,6 @@
 package controller;
 
 import dao.*;
-import dto.State;
-import dto.Type;
-import dao.PeriodicTable;
-import dao.PeriodicTableList;
 
 import java.util.*;
 
